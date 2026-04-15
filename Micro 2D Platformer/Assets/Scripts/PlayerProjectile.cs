@@ -10,12 +10,15 @@ public class PlayerProjectile : MonoBehaviour
     public float projectileLife; //how long it lasts
     public float projectileCount; //the count down till the projectile is destroyed
 
+    public GameObject player;
 
-    
     // Start is called before the first frame update
     void Start()
     {
         projectileCount = projectileLife; //starts as soon as projectile is spwaned
+
+        player = GameObject.FindGameObjectWithTag("Player");
+        Physics2D.IgnoreCollision(player.GetComponent<Collider2D>(), GetComponent<Collider2D>());
 
     }
 
