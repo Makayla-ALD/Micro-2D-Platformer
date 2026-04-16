@@ -14,6 +14,8 @@ public class PlayerMovement : MonoBehaviour
     //Buffs and Nerfs
     float speedMultiplyer = 1f;
     float speedDecrease = 2f;
+
+    //Player Knockback
     public float KnockbackForce;
     public float KnockbackTime;
     public float KnockbackDuration;
@@ -26,7 +28,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     
-    void Start()
+    private void Start()
     {
         SpeedBoost.OnSpeedCollected += StartSpeedBoost;
 
@@ -35,26 +37,28 @@ public class PlayerMovement : MonoBehaviour
 
     void StartSpeedBoost(float multiplyer)
     {
-        StartCoroutine(SpeedBoostCoroutine(multiplyer));
+        if (this != null) // Check if the player object still exists before starting the coroutine
+            StartCoroutine(SpeedBoostCoroutine(multiplyer));
     }
 
     private IEnumerator SpeedBoostCoroutine(float multiplier)
     {
         speedMultiplyer = multiplier;
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(3f);//how long the boost lasts
         Debug.Log("Boost done");
         speedMultiplyer = 1f;
     } 
 
     void StartSpeedNerf(float divider)
     {
-        StartCoroutine(SpeedNerfCoroutine(divider));
+        if (this != null) // Check if the player object still exists before starting the coroutine
+            StartCoroutine(SpeedNerfCoroutine(divider));
     }
 
     private IEnumerator SpeedNerfCoroutine(float divider)
     {
         speedDecrease = divider;
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(2f); //how long the nerf lasts
         Debug.Log("Nerf done");
         speedDecrease = 2f;
     }
@@ -65,7 +69,7 @@ public class PlayerMovement : MonoBehaviour
         
         playerBody.velocity = new Vector2(Input.GetAxis("Horizontal") * speed * speedMultiplyer / speedDecrease, playerBody.velocity.y); // player horizontal movement
 
-        if (Input.GetKey(KeyCode.W) && !isJumping)
+        if (Input.GetKey(KeyCode.W) && !isJumping) // player jump, only if player is not already jumping
         {
             playerBody.velocity = new Vector2(playerBody.velocity.x, jumpForce);
             isJumping = true;

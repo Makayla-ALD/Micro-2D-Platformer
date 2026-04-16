@@ -40,7 +40,7 @@ public class PlayerHealth : MonoBehaviour
         if(currentHealth <= 0) // if health drpos to 0, player is destroyed, aka sprite and movement disabled
         {
             playerSprite.enabled = false;
-            playerMovement.enabled = false;
+            Time.timeScale = 0f;
             gameManager.gameOver();
 
         }
