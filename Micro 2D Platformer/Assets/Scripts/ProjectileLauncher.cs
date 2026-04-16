@@ -20,7 +20,7 @@ public class ProjectileLauncher : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKey(KeyCode.E) && shootCounter <= 0)
+        if(Input.GetKey(KeyCode.Space) && shootCounter <= 0)
         {
             Instantiate(projectilePrefab, launchPoint.position, Quaternion.identity);
             shootCounter = shootTime;

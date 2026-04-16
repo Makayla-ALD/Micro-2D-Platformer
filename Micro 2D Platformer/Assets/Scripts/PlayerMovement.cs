@@ -65,7 +65,7 @@ public class PlayerMovement : MonoBehaviour
         
         playerBody.velocity = new Vector2(Input.GetAxis("Horizontal") * speed * speedMultiplyer / speedDecrease, playerBody.velocity.y); // player horizontal movement
 
-        if (Input.GetKey(KeyCode.Space) && !isJumping)
+        if (Input.GetKey(KeyCode.W) && !isJumping)
         {
             playerBody.velocity = new Vector2(playerBody.velocity.x, jumpForce);
             isJumping = true;
