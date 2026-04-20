@@ -15,27 +15,44 @@ public class PlayerProjectile : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        projectileCount = projectileLife; //starts as soon as projectile is spwaned
-
         player = GameObject.FindGameObjectWithTag("Player");
-        Physics2D.IgnoreCollision(player.GetComponent<Collider2D>(), GetComponent<Collider2D>());
+        if (player != null)
+        {
+            var projCol = GetComponent<Collider2D>();
+            if (projCol != null)
+            {
+                foreach (var pc in player.GetComponentsInChildren<Collider2D>())
+                {
+                    Physics2D.IgnoreCollision(pc, projCol);
+                }
+            }
+        }
+    }
 
+    void OnEnable()
+    {
+        // Reset lifetime every time the projectile becomes active 
+        projectileCount = projectileLife;
+
+        // Give an initial velocity immediately when enabled 
+        if (projectileRb != null)
+            projectileRb.velocity = new Vector2(speed, projectileRb.velocity.y);
     }
 
     // Update is called once per frame
     void Update()
     {
-        projectileCount -= Time.deltaTime;  
-        if(projectileCount <= 0)
+        projectileCount -= Time.deltaTime;
+        if (projectileCount <= 0)
         {
-            //Destroy(gameObject);
             gameObject.SetActive(false);
         }
     }
 
     private void FixedUpdate()
     {
-        projectileRb.velocity = new Vector2(speed, projectileRb.velocity.y);
+        if (projectileRb != null)
+            projectileRb.velocity = new Vector2(speed, projectileRb.velocity.y);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -44,7 +61,7 @@ public class PlayerProjectile : MonoBehaviour
         {
             Destroy(collision.gameObject);
         }
-        //Destroy(gameObject);
+
         gameObject.SetActive(false);
     }
 }

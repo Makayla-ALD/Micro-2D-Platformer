@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D playerBody;
     bool isJumping;
     bool isSprinting;
+    private bool jumpPressed;
 
     //Buffs and Nerfs
     float speedMultiplyer = 1f;
@@ -71,9 +72,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKey(KeyCode.W) && !isJumping) // player jump, only if player is not already jumping
         {
-            playerBody.velocity = new Vector2(playerBody.velocity.x, jumpForce);
-            isJumping = true;
-            Debug.Log("Jump!");
+            jumpPressed = true;
         }
         
     }
@@ -96,6 +95,15 @@ public class PlayerMovement : MonoBehaviour
             }
             KnockbackTime -= Time.deltaTime;
         }
+
+        if (jumpPressed)
+        {
+            playerBody.velocity = new Vector2(playerBody.velocity.x, jumpForce);
+            isJumping = true;
+            jumpPressed = false;
+        }
+
+
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
