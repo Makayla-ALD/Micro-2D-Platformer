@@ -3436,6 +3436,51 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0cc83f2ac81b9c64f9af657b3987393a, type: 3}
+--- !u!1 &797182481
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 797182483}
+  - component: {fileID: 797182482}
+  m_Layer: 0
+  m_Name: ProjectilePool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &797182482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 797182481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbde5c24bc6c9cd44af0cb50a83f10b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectilePrefab: {fileID: 6482545081394491074, guid: 55e38f6222777a841be175dac900bc1d, type: 3}
+--- !u!4 &797182483
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 797182481}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 826.49915, y: 411, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &807608314
 GameObject:
   m_ObjectHideFlags: 0
@@ -4569,7 +4614,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.374}
   m_AnchorMax: {x: 0.5, y: 0.374}
-  m_AnchoredPosition: {x: -2.9, y: -0.23028946}
+  m_AnchoredPosition: {x: -2.9, y: -0.23028564}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1036356260
@@ -8896,6 +8941,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 6482545081394491074, guid: 55e38f6222777a841be175dac900bc1d, type: 3}
   launchPoint: {fileID: 475746447}
+  projectilePooler: {fileID: 797182482}
   shootTime: 0.5
   shootCounter: 0
 --- !u!212 &2145766102 stripped
@@ -9036,3 +9082,4 @@ SceneRoots:
   - {fileID: 1395852653}
   - {fileID: 1260138622}
   - {fileID: 1693420600}
+  - {fileID: 797182483}

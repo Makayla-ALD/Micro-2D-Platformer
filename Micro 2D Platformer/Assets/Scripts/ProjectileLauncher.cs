@@ -6,6 +6,7 @@ public class ProjectileLauncher : MonoBehaviour
 {
     public GameObject projectilePrefab;
     public Transform launchPoint;
+    public ProjectilePooler projectilePooler;
 
     public float shootTime; //cooldown between projectiles
     public float shootCounter; //cooldown timer
@@ -22,7 +23,13 @@ public class ProjectileLauncher : MonoBehaviour
     {
         if(Input.GetKey(KeyCode.Space) && shootCounter <= 0)
         {
-            Instantiate(projectilePrefab, launchPoint.position, Quaternion.identity);
+            GameObject projectile = projectilePooler.GetPooledObject();
+            if (projectile != null)
+            {
+                projectile.transform.position = launchPoint.position;
+                projectile.SetActive(true);
+            }
+            //Instantiate(projectilePrefab, launchPoint.position, Quaternion .identity);
             shootCounter = shootTime;
         }
         shootCounter -= Time.deltaTime;

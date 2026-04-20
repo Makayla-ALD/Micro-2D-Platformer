@@ -28,7 +28,8 @@ public class PlayerProjectile : MonoBehaviour
         projectileCount -= Time.deltaTime;  
         if(projectileCount <= 0)
         {
-            Destroy(gameObject);
+            //Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
 
@@ -43,6 +44,7 @@ public class PlayerProjectile : MonoBehaviour
         {
             Destroy(collision.gameObject);
         }
-        Destroy(gameObject);
+        //Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 }
